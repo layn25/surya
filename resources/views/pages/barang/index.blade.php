@@ -43,30 +43,34 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        
-                        <tr>
-                            <td>
-                                <a href="#" class="btn btn-warning btn-sm">
-                                    <i class="fas fa-pen fa-sm text-white-50"></i>
-                                    Edit
-                                </a>
-                                <a href="#" class="btn btn-danger btn-sm ms-2" onclick ="alertConfirm(this)" data-id ="$item->id.">
-                                    <i class="fas fa-trash fa-sm text-white-50"></i>
-                                    Hapus
-                                </a>
-                            </td>
-                            
-                            <td>Kain Katun Hitam</td>
-                            </td>
-                            <td>Kain</td>
-                            <td>2</td>
-                            <td>10,000</td>
-                            <td>12/12/2015</td>
-                        </tr>
-                        
+                        @foreach($barang as $item)
+                            <tr>
+                                <td>
+                                    <form id="delete-{{ $item->id }}" action="{{ route('barang.delete', $item->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editBarang-{{ $item->id }}">
+                                            <i class="fas fa-pen fa-sm text-white-50"></i> Edit
+                                        </a>
+
+                                        <a href="#" class="btn btn-danger btn-sm ms-2" onclick="alertConfirm(this)" data-id="{{ $item->id }}">
+                                            <i class="fas fa-trash fa-sm text-white-50"></i>
+                                            Hapus
+                                        </a>
+                                    </form>
+                                    
+                                </td>
+                                <td>{{ $item->name }}</td>
+                                <td>{{ $item->kategori }}</td>
+                                <td>{{ $item->jumlah }}</td>
+                                <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
+                                <td>{{ $item->updated_at->format('d/m/Y') }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+    @include('pages.barang.components.edit')
 @endsection

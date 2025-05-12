@@ -15,6 +15,9 @@
     @include('layouts.styles.css')
 </head>
 <body id="page-top">
+    <div class="berhasil" data-berhasil="{{ ucWords(Session::get('success')) }}"></div>
+    <div class="gagal" data-gagal="{{ ucWords(Session::get('error')) }}"></div>
+    <div class="warning" data-warning="{{ ucWords(Session::get('warning')) }}"></div>
 
 <!-- Page Wrapper -->
 <div id="wrapper">
