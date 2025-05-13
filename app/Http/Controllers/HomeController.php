@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Barang;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -24,12 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $users = User::count();
+        $user = User::count();
+        $barang = Barang::count();
 
-        $widget = [
-            'users' => $users,
-        ];
-
-        return view('pages.home.index', compact('widget'));
+        return view('pages.home.index', compact('user', 'barang'));
     }
 }

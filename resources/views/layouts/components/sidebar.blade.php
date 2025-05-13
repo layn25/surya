@@ -1,11 +1,11 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/home') }}">
-      <div class="sidebar-brand-icon rotate-n-15">
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('home') }}">
+      {{-- <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
-      </div>
-      <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+      </div> --}}
+      <div class="sidebar-brand-text mx-3">Ministok</div>
   </a>
 
   <!-- Divider -->
@@ -26,6 +26,7 @@
       {{ __('Settings') }}
   </div>
 
+  @if (Auth::user()->role == 'admin')
   <!-- Nav Item - Profile -->
   <li class="nav-item {{ Nav::isRoute('pengguna') }}">
       <a class="nav-link" href="{{ route('pengguna') }}">
@@ -33,7 +34,7 @@
           <span>{{ __('Pengguna') }}</span>
       </a>
   </li>
-
+  @endif
   <!-- Nav Item - Product -->
   <li class="nav-item {{ Nav::isRoute('barang') }}">
       <a class="nav-link" href="{{ route('barang') }}">
@@ -42,13 +43,6 @@
       </a>
   </li>
 
-  <!-- Nav Item - About -->
-  <li class="nav-item {{ Nav::isRoute('about') }}">
-      <a class="nav-link" href="{{ route('about') }}">
-          <i class="fas fa-fw fa-hands-helping"></i>
-          <span>{{ __('About') }}</span>
-      </a>
-  </li>
 
   <!-- Divider -->
   <hr class="sidebar-divider d-none d-md-block">

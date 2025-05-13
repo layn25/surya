@@ -54,6 +54,7 @@ class BarangController extends Controller
             'kategori' => $request->kategori,
             'jumlah' => $request->jumlah,
             'harga' => $request->harga,
+            'user_id' => Auth::id(),
         ]);
 
         return redirect()->back()->with('success', 'Barang berhasil diperbarui.');

@@ -10,4 +10,14 @@
 <script src="{{ asset('js/demo/datatables-demo.js') }}"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(document).ready(function () {
+        if (!$.fn.DataTable.isDataTable('#dataTable')) {
+            $('#dataTable').DataTable({
+                scrollX: true
+            });
+        }
+    });
+</script>
+
 @include('alerts.sweetalert')

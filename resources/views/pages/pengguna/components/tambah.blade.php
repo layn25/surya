@@ -8,29 +8,43 @@
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <form action="/admin/service/bukuMenuUpdate.php" method="POST">
+
+            <form action="{{ route('pengguna.create') }}" method="POST">
+                @csrf
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="namaBarang1">Nama</label>
+                        <label for="nama">Nama</label>
                         <input type="text" class="form-control" id="nama" name="nama" placeholder="Masukkan Nama" required>
                     </div>
                     <div class="form-group">
-                        <label for="namaBarang">Email</label>
-                        <input type="text" class="form-control" id="email" name="email" placeholder="Masukkan Email" required>
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Masukkan Email" required>
                     </div>
                     <div class="form-group">
-                        <label for="namaBarang1">Password</label>
-                        <input type="password" class="form-control" id="password" name="nama" placeholder="Masukkan Password" required>
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Masukkan Password" required>
                     </div>
                     <div class="form-group">
-                        <label for="kategori">Role</label>
-                        <select class="form-control" id="kategori" name="kategori">
-                            <option value="" hidden></option>
-                            <option value="3">Pengguna</option>
-                            <option value="2">Admin</option>
+                        <label for="password_confirmation">Konfirmasi Password</label>
+                        <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Ulangi Password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Role</label>
+                        <select class="form-control" id="role" name="role" required>
+                            <option value="" hidden>Pilih Role</option>
+                            <option value="operator">Operator</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select class="form-control" id="status" name="status" required>
+                            <option value="aktif">Aktif</option>
+                            <option value="nonaktif">Nonaktif</option>
                         </select>
                     </div>
                 </div>
+
                 <div class="modal-footer">
                     <button class="btn btn-danger" data-dismiss="modal">Batal</button>
                     <button type="submit" class="btn btn-primary">Simpan</button>

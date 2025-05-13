@@ -24,47 +24,54 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Aksi</th>
                             <th>Nama Barang</th>
+                            <th>Deskripsi</th>
                             <th>Kategori</th>
                             <th>Jumlah</th>
                             <th>Harga</th>
-                            <th>Updated_at</th>
+                            <th>Updated at</th>
+                            <th>Diupdate Oleh</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Aksi</th>
                             <th>Nama Barang</th>
+                            <th>Deskripsi</th>
                             <th>Kategori</th>
                             <th>Jumlah</th>
                             <th>Harga</th>
                             <th>Updated_at</th>
+                            <th>Diupdate Oleh</th>
+                            <th>Aksi</th>
                         </tr>
                     </tfoot>
                     <tbody>
                         @foreach($barang as $item)
                             <tr>
-                                <td>
-                                    <form id="delete-{{ $item->id }}" action="{{ route('barang.delete', $item->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE')
-                                        <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editBarang-{{ $item->id }}">
-                                            <i class="fas fa-pen fa-sm text-white-50"></i> Edit
-                                        </a>
-
-                                        <a href="#" class="btn btn-danger btn-sm ms-2" onclick="alertConfirm(this)" data-id="{{ $item->id }}">
-                                            <i class="fas fa-trash fa-sm text-white-50"></i>
-                                            Hapus
-                                        </a>
-                                    </form>
-                                    
-                                </td>
                                 <td>{{ $item->name }}</td>
+                                <td class="deskripsi-col">{{ $item->deskripsi }}</td>
                                 <td>{{ $item->kategori }}</td>
                                 <td>{{ $item->jumlah }}</td>
                                 <td>Rp {{ number_format($item->harga, 0, ',', '.') }}</td>
                                 <td>{{ $item->updated_at->format('d/m/Y') }}</td>
+                                <td>{{ $item->user->nama }}</td>
+                                <td>
+                                    <form id="delete-{{ $item->id }}" action="{{ route('barang.delete', $item->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <div class="d-flex align-items-center gap-2">
+                                            <a href="#" class="btn btn-warning btn-sm d-flex align-items-center" data-toggle="modal" data-target="#editBarang-{{ $item->id }}">
+                                                <i class="fas fa-pen mr-1"></i> Edit
+                                            </a>
+
+                                            <button type="button" class="btn btn-danger btn-sm d-flex align-items-center ml-1" onclick="alertConfirm(this)" data-id="{{ $item->id }}">
+                                                <i class="fas fa-trash mr-1"></i> Hapus
+                                            </button>
+                                        </div>
+                                    </form>
+                                </td>
+
                             </tr>
                         @endforeach
                     </tbody>
